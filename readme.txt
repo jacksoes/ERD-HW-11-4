@@ -4,11 +4,17 @@ Entities - This ERD consist of a supertype entity and several subtype employees:
 
 Supertype:
     Employee entity:
+        EmployeeID UNSIGNED INT PK 
         Fname VARCHAR
         Lname VARCHAR
         DOB DATE
         Address VARCHAR 
         SSN INT VARCHAR
+
+        employee_type VARCHAR
+        is_manager BOOLEAN
+        compensation_type VARCHAR NOT NULL
+
 
 Subtypes:
     {
@@ -17,12 +23,15 @@ Subtypes:
 
 
         Secretary entity:
+            EmployeeID UNSIGNED INT PK FK 
             TypingSpeed SMALLINT
 
         Technician entity:
+            EmployeeID UNSIGNED INT PK FK 
             Tgrade SMALLINT
 
         Engineer entity:
+            EmployeeID UNSIGNED INT PK FK 
             EngType VARCHAR
 
     },
@@ -32,6 +41,7 @@ Subtypes:
 
 
         Manager:
+            EmployeeID UNSIGNED INT PK FK 
             MgrDeptCode UNSIGNED INT
             Manages several(Project entity)
 
@@ -41,10 +51,12 @@ Subtypes:
         COMPLETE CONSTRAINT: An employee MUST be either a salaried or hourly employee.
 
         Salaried_Employee:
+            EmployeeID UNSIGNED INT PK FK 
             salary UNSIGNED INT
 
         Hourly_Employee:
-            pay_scale FLOAT
+            EmployeeID UNSIGNED INT PK FK 
+            PayScale FLOAT
             belongs to ONE(TradeUnion entity)
     }
 
